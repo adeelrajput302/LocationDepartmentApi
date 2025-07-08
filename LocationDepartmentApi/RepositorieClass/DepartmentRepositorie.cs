@@ -59,6 +59,7 @@ namespace LocationDepartmentApi.RepositorieClass
                 update.PhoneNumber = department.PhoneNumber;
                 update.Email = department.Email;
                 update.CreatedAt = department.CreatedAt;
+                
                
 
                

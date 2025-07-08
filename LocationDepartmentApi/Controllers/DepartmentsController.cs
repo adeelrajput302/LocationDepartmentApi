@@ -52,6 +52,7 @@ namespace LocationDepartmentApi.Controllers
                 {
                     DepartmentId = d.DepartmentId,
                     LocationId = d.LocationId,
+                    DepartmentName = d.DepartmentName,
                     DepartmentDescription = d.DepartmentDescription
                 }).ToList();
 
@@ -106,6 +107,7 @@ namespace LocationDepartmentApi.Controllers
                 {
                     DepartmentId = department.DepartmentId,
                     LocationId = department.LocationId,
+                    DepartmentName = department.DepartmentName,
                     DepartmentDescription = department.DepartmentDescription
                 };
 

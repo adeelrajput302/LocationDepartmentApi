@@ -1,4 +1,5 @@
-﻿using LocationDepartmentApi.Models;
+﻿using LocationDepartmentApi.Dtos;
+using LocationDepartmentApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

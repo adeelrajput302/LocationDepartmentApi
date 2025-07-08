@@ -1,8 +1,10 @@
 ﻿using LocationDepartmentApi.Data;
+using LocationDepartmentApi.Dtos;
 using LocationDepartmentApi.Models;
 using LocationDepartmentApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -33,19 +35,17 @@ namespace LocationDepartmentApi.RepositorieClass
 
 
         // for Create a Location
-
         public async Task<Location> CreateLocation(Location location)
         {
-            if(location != null)
-            {
-                appDbContext.Entry(location).State = EntityState.Unchanged;
-            }
+            if (location == null)
+                return null;
 
             var store = await appDbContext.AddAsync(location);
             await appDbContext.SaveChangesAsync();
-            return store.Entity;
 
+            return store.Entity;
         }
+
 
         // for update Location
         public async Task<Location> UpdateLocation(Location location)
@@ -81,7 +81,6 @@ namespace LocationDepartmentApi.RepositorieClass
 
         }
 
-
-
+       
     }
 }

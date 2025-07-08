@@ -37,9 +37,45 @@ namespace LocationDepartmentApi.Controllers
             }
         }
 
-        // Get BY ID
+        // Check Stuats
+        [HttpPut("CheckStatus")] 
 
-        [HttpGet("GetLocationById {id:int}")]
+        public async Task<ActionResult<IsActiveDTO>> CheckStuats(IsActiveDTO location)
+        {
+            try
+            {
+                
+                var Exitinglocation = await locationRepository.GetLocationById(location.LocationId);
+                if(Exitinglocation == null)
+                {
+                    return NotFound();
+                }
+
+                Exitinglocation.IsActive = location.IsActive; 
+
+                await locationRepository.UpdateLocation(Exitinglocation);
+
+                var IsActiveDTO = new IsActiveDTO
+                {
+                    LocationId = location.LocationId,
+                    IsActive = Exitinglocation.IsActive
+                };
+                return Ok(IsActiveDTO);
+
+            }
+
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+
+        }
+
+
+    // Get BY ID
+
+    [HttpGet("GetLocationById {id:int}")]
         public async Task<ActionResult<Location>> GetLocationById(int id)
         {
             try
@@ -53,19 +89,18 @@ namespace LocationDepartmentApi.Controllers
 
                 return result;
             }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
-            }
-        }
+    catch (Exception)
+    {
+        return StatusCode(StatusCodes.Status500InternalServerError,
+            "Error retrieving data from the database");
+    }
+}
 
 
 
-        
+
 
         // Create Location 
-
 
         [HttpPost("CreateNewLocation")]
         public async Task<ActionResult<Location>> CreateLocation(Location location)
@@ -76,10 +111,10 @@ namespace LocationDepartmentApi.Controllers
                 if (location == null)
                     return BadRequest();
 
-                var createdLocation = await locationRepository.CreateLocation(location);
+                var CreateLocation = await locationRepository.CreateLocation(location);
 
                 return CreatedAtAction(nameof(GetLocations),
-                    new { id = createdLocation.LocationId }, createdLocation);
+                    new { id = CreateLocation.LocationId }, CreateLocation);
             }
             catch (Exception)
             {

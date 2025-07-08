@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocationDepartmentApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250707065229_Initial_Catalog")]
-    partial class Initial_Catalog
+    [Migration("20250708160739_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,6 +69,9 @@ namespace LocationDepartmentApi.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LocationDescrption")
                         .HasColumnType("nvarchar(max)");

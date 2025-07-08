@@ -1,11 +1,9 @@
 ﻿using System;
 
-namespace LocationDepartmentApi.Models
+namespace LocationDepartmentApi.Dtos
 {
-    public class Location
+    public class LocationWithoutIdDto
     {
-
-        public int LocationId { get; set; }
         public string LocationName { get; set; }
         public string LocationDescrption { get; set; }
         public string Address { get; set; }
@@ -13,7 +11,6 @@ namespace LocationDepartmentApi.Models
         public string State { get; set; }
         public string Country { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-        public Boolean IsActive { get; set; }
+       
     }
 }
